@@ -120,7 +120,7 @@ const config: Config = {
 
   apiKey: '',
 
-  apiUrl: process.env.API_URL ?? 'https://api.wakatime.com/api/v1',
+  apiUrl: process.env.API_URL ?? 'https://wakapi.dev/api',
 
   colors: {
     allGood: '',
@@ -129,7 +129,7 @@ const config: Config = {
     notSignedIn: 'red',
   },
 
-  currentUserApiEndPoint: process.env.CURRENT_USER_API_URL ?? '/users/current',
+  currentUserApiEndPoint: process.env.CURRENT_USER_API_URL ?? '/compat/wakatime/v1/users/current',
 
   detectionIntervalInSeconds: 60,
 
@@ -146,7 +146,8 @@ const config: Config = {
     'w3schools.com',
   ],
 
-  heartbeatApiEndPoint: process.env.HEARTBEAT_API_URL ?? '/users/current/heartbeats',
+  heartbeatApiEndPoint:
+    process.env.HEARTBEAT_API_URL ?? '/compat/wakatime/v1/users/current/heartbeats',
 
   hostname: '',
 
@@ -156,9 +157,9 @@ const config: Config = {
 
   loggingType: 'domain',
 
-  logoutUserUrl: process.env.LOGOUT_USER_URL ?? 'https://wakatime.com/logout',
+  logoutUserUrl: process.env.LOGOUT_USER_URL ?? 'https://wakapi.dev/logout',
 
-  name: 'WakaTime',
+  name: 'WakaApi',
 
   nonTrackableSites: ['chrome://', 'about:'],
 
@@ -177,7 +178,8 @@ const config: Config = {
 
   states: ['allGood', 'notLogging', 'notSignedIn', 'blacklisted', 'whitelisted'],
 
-  summariesApiEndPoint: process.env.SUMMARIES_API_URL ?? '/users/current/summaries',
+  summariesApiEndPoint:
+    process.env.SUMMARIES_API_URL ?? '/compat/wakatime/v1/users/current/summaries',
 
   theme: 'light',
 

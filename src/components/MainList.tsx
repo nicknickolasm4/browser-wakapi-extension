@@ -104,7 +104,7 @@ export default function MainList({
           <a
             target="_blank"
             rel="noreferrer"
-            href="https://wakatime.com/login"
+            href="https://wakapi.dev/login"
             className="list-group-item text-body-secondary"
           >
             <i className="fa fa-fw fa-sign-in me-2"></i>

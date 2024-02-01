@@ -2,18 +2,18 @@
 /* eslint-disable default-case */
 import axios, { AxiosResponse } from 'axios';
 import { IDBPDatabase, openDB } from 'idb';
+import { encode } from 'js-base64';
 import moment from 'moment';
 import browser, { Tabs } from 'webextension-polyfill';
 import config from '../config/config';
 import { SendHeartbeat } from '../types/heartbeats';
 import { GrandTotal, SummariesPayload } from '../types/summaries';
 import { ApiKeyPayload, AxiosUserResponse, User } from '../types/user';
-import { IS_FIREFOX, IS_EDGE, generateProjectFromDevSites } from '../utils';
+import { IS_EDGE, IS_FIREFOX, IS_OPERA, generateProjectFromDevSites } from '../utils';
 import { getApiKey } from '../utils/apiKey';
 import changeExtensionState from '../utils/changeExtensionState';
 import contains from '../utils/contains';
 import getDomainFromUrl, { getDomain } from '../utils/getDomainFromUrl';
-
 class WakaTimeCore {
   tabsWithDevtoolsOpen: Tabs.Tab[];
   db: IDBPDatabase | undefined;
@@ -60,8 +60,8 @@ class WakaTimeCore {
     const summariesAxiosPayload: AxiosResponse<SummariesPayload> = await axios.get(
       `${items.apiUrl}${items.summariesApiEndPoint}`,
       {
+        headers: { Authorization: `Basic ${encode(api_key)}` },
         params: {
-          api_key,
           end: today,
           start: today,
         },
@@ -84,6 +84,7 @@ class WakaTimeCore {
 
       const apiKeyResponse: AxiosResponse<ApiKeyPayload> = await axios.post(
         `${items.apiUrl}${items.currentUserApiEndPoint}/get_api_key`,
+        { headers: { Authorization: `Basic ${api_key}` } },
       );
       return apiKeyResponse.data.data.api_key;
     } catch (err: unknown) {
@@ -103,7 +104,7 @@ class WakaTimeCore {
     });
     const userPayload: AxiosResponse<AxiosUserResponse> = await axios.get(
       `${items.apiUrl}${items.currentUserApiEndPoint}`,
-      { params: { api_key } },
+      { headers: { Authorization: `Basic ${encode(api_key)}` } },
     );
     return userPayload.data.data;
   }
@@ -170,6 +171,7 @@ class WakaTimeCore {
         if (!contains(url, items.blacklist as string)) {
           await this.sendHeartbeat(
             {
+              branch: 'GitHub Repositories',
               hostname: items.hostname as string,
               project,
               url,
@@ -343,6 +345,9 @@ class WakaTimeCore {
     } else if (IS_EDGE) {
       browserName = 'edge';
       userAgent = navigator.userAgent;
+    } else if (IS_OPERA) {
+      browserName = 'Opera';
+      userAgent = navigator.userAgent.match(/Opera|OPR\//);
     } else {
       userAgent = navigator.userAgent.match(/Chrome\/\S+/g)![0];
     }
@@ -350,11 +355,11 @@ class WakaTimeCore {
       entity: heartbeat.url,
       time: moment().format('X'),
       type: type,
-      user_agent: `${userAgent} ${os} ${browserName}-wakatime/${config.version}`,
+      user_agent: `${userAgent} ${os} ${browserName}-wakapi/${config.version}`,
     };
 
-    payload.project = heartbeat.project ?? '<<LAST_PROJECT>>';
-    payload.branch = heartbeat.branch ?? '<<LAST_BRANCH>>';
+    payload.project = heartbeat.project ?? 'Navegador';
+    payload.branch = heartbeat.branch ?? 'Pesquisas';
 
     return payload;
   }
@@ -389,6 +394,9 @@ class WakaTimeCore {
         body: JSON.stringify(payload),
         credentials: 'omit',
         method: 'POST',
+      };
+      request.headers = {
+        Authorization: 'Basic ' + apiKey,
       };
       if (hostname) {
         request.headers = {

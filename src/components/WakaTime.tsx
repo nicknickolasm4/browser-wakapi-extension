@@ -32,6 +32,8 @@ export default function WakaTime(): JSX.Element {
   return (
     <div className="py-4 px-2 pt-0">
       <NavBar />
+
+      <p>extensionState: {extensionState}</p>
       {isApiKeyValid && extensionState === 'notSignedIn' && (
         <Alert
           type={config.alert.failure.type}

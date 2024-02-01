@@ -1,26 +1,11 @@
-# chrome-wakatime
+# browser-wakapi-extension
 
-Automatic time tracking for stats about your website debugging, research, documentation, etc.
+EXTENSION CHROME, FIREFOX, OPERA AND EDGE
 
-Note: Activity from this Chrome extension will not display on leaderboards, so installing this extension may lower your rank.
+USING THE WAKATIME REPOSITORY
+IT'S JUST A CHANGE OF ROUTES AND ADJUSTMENTS TO RECEIVE ON WAKAPI.DEV
 
-## Installation
-
-1. Install the extension:
-
-[![Chrome](https://wakatime.com/static/img/chrome-web-store.png)](https://chrome.google.com/webstore/detail/wakatime/jnbbnacmeggbgdjgaoojpmhdlkkpblgi)
-
-[![Firefox](https://wakatime.com/static/img/firefox-addon.png)](https://addons.mozilla.org/en-US/firefox/addon/wakatime/)
-
-[![Edge](https://wakatime.com/static/img/microsoft-extension.png)](https://microsoftedge.microsoft.com/addons/detail/wakatime/cdnpfnaadjmaplhghnlonephmabegadl)
-
-2. Login to [WakaTime](https://wakatime.com/).
-
-3. Use Chrome like you normally do and your time will be tracked for you automatically.
-
-4. Visit https://wakatime.com to see your logged time.
-
-5. Use in conjunction with [other WakaTime plugins](https://wakatime.com/plugins).
+Get api key here => https://wakapi.dev/
 
 ## Screenshots
 

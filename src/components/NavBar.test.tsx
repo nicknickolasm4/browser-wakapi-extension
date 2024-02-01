@@ -26,15 +26,13 @@ describe('NavBar', () => {
           >
             <a
               class="navbar-brand"
-              href="https://wakatime.com"
+              href="https://wakapi.dev"
               rel="noreferrer"
               target="_blank"
             >
-              <img
-                src="graphics/wakatime-logo-48.png"
-              />
+            <img src="graphics/wakapi-logo-48.png"/>
               <div>
-                WakaTime
+                WakApi
               </div>
             </a>
             <button

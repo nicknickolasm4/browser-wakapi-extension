@@ -1,6 +1,6 @@
 {
-  "name": "chrome-wakatime",
-  "private": true,
+  "name": "browser-wakapi-extension",
+  "private": false,
   "scripts": {
     "build": "clap build",
     "dev": "clap dev",
@@ -30,6 +30,7 @@
   "dependencies": {
     "@manaflair/redux-batch": "^1.0.0",
     "@reduxjs/toolkit": "^1.9.0",
+    "@types/js-base64": "^3.3.1",
     "bootstrap": "^5.3.2",
     "bootswatch": "^5.2.3",
     "classnames": "^2.3.2",

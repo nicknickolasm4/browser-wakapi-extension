@@ -1,7 +1,7 @@
 import { AnyAction, Dispatch } from '@reduxjs/toolkit';
-import { setApiKey, setLoggingEnabled, setTotalTimeLoggedToday } from '../reducers/configReducer';
 import config from '../config/config';
 import WakaTimeCore from '../core/WakaTimeCore';
+import { setApiKey, setLoggingEnabled, setTotalTimeLoggedToday } from '../reducers/configReducer';
 import { setUser } from '../reducers/currentUser';
 import changeExtensionState from './changeExtensionState';
 
@@ -34,12 +34,6 @@ export const fetchUserData = async (
       apiKey: config.apiKey,
     });
     apiKey = storage.apiKey as string;
-    if (!apiKey) {
-      apiKey = await WakaTimeCore.fetchApiKey();
-      if (apiKey) {
-        await browser.storage.sync.set({ apiKey });
-      }
-    }
 
     dispatch(setApiKey(apiKey));
   }

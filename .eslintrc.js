@@ -23,14 +23,14 @@ module.exports = {
     'plugin:typescript-sort-keys/recommended',
   ],
   globals: {
-    browser: true,
-    chrome: true,
-    phantom: true,
+    browser: false,
+    chrome: false,
+    phantom: false,
   },
   parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaFeatures: {
-      jsx: true,
+      jsx: false,
     },
     ecmaVersion: 2018, // Allows for the parsing of modern ECMAScript features
     sourceType: 'module', // Allows for the use of imports

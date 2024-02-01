@@ -12,10 +12,7 @@
     "watch": "clap watch"
   },
   "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "pre-push": "npm test"
-    }
+
   },
   "lint-staged": {
     "*.json": [
@@ -23,8 +20,7 @@
     ],
     "*.{js|jsx|ts|tsx}": [
       "eslint",
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "dependencies": {
